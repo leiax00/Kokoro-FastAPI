@@ -8,7 +8,7 @@ services:
     build:
       context: ../..
       dockerfile: docker/cpu/Dockerfile
-    image: leiax00/kokoro-zh-cpu:latest
+    image: ghcr.io/leiax00/kokoro-zh-cpu:latest
     volumes:
       - /workspace/models/Kokoro-82M-v1.1-zh:/app/api/src/models/v1_1-zh
       - /workspace/models/Kokoro-82M-v1.1-zh/voices:/app/api/src/voices/v1_1-zh
