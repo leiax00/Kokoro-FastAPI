@@ -12,7 +12,7 @@ variable "OWNER" {
 }
 
 variable "REPO" {
-    default = "kokoro-fastapi"
+    default = "kokoro-zh"
 }
 
 variable "DOWNLOAD_MODEL" {
