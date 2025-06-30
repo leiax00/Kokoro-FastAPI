@@ -2,9 +2,6 @@ FROM --platform=$BUILDPLATFORM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu24.04
 # Set non-interactive frontend
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN sed -i 's|http://mirrors.aliyun.com|security.ubuntu.com|g' /etc/apt/sources.list \
- && sed -i 's|http://mirrors.aliyun.com|security.ubuntu.com|g' /etc/apt/sources.list.d/ubuntu.sources
-
 # Install Python and other dependencies
 RUN apt-get update && apt-get install -y \
     python3.10 \
@@ -23,13 +20,13 @@ RUN apt-get update && apt-get install -y \
 # Install UV using the installer script
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
     mv /root/.local/bin/uv /usr/local/bin/ && \
-    mv /root/.local/bin/uvx /usr/local/bin/ 
+    mv /root/.local/bin/uvx /usr/local/bin/
 
 # Create non-root user and set up directories and permissions
 RUN useradd -m -u 1001 appuser && \
     mkdir -p /app/api/src/models/v1_0 && \
     chown -R appuser:appuser /app
-    
+
 USER appuser
 WORKDIR /app
 
@@ -57,7 +54,7 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONPATH=/app:/app/api \
     PATH="/app/.venv/bin:$PATH" \
     UV_LINK_MODE=copy \
-    USE_GPU=true 
+    USE_GPU=true
 
 ENV DOWNLOAD_MODEL=true
 # Download model if enabled

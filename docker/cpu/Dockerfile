@@ -1,9 +1,6 @@
-FROM python:3.10-slim 
+FROM python:3.10-slim
 
 # Install dependencies and check espeak location
-RUN sed -i 's|http://mirrors.aliyun.com|security.ubuntu.com|g' /etc/apt/sources.list \
- && sed -i 's|http://mirrors.aliyun.com|security.ubuntu.com|g' /etc/apt/sources.list.d/ubuntu.sources
-
 RUN apt-get update && apt-get install -y \
     espeak-ng \
     espeak-ng-data \
