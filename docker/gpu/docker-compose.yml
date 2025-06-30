@@ -18,7 +18,7 @@ services:
       - "8880:8880"
     environment:
       - PYTHONPATH=/app:/app/api
-      - $DOWNLOAD_MODEL=false
+      - DOWNLOAD_MODEL=false
       - USE_GPU=true
       - PYTHONUNBUFFERED=1
     deploy:
