@@ -1,3 +1,7 @@
+# 需要手动下载 hexgrad/Kokoro-82M-v1.1-zh
+#  pip install huggingface-hub
+# huggingface-cli download hexgrad/Kokoro-82M-v1.1-zh --local-dir /workspace/models/Kokoro-82M-v1.1-zh
+
 name: kokoro-tts-gpu
 services:
   kokoro-tts:
@@ -5,13 +9,16 @@ services:
     build:
       context: ../..
       dockerfile: docker/gpu/Dockerfile
+    image: leiax00/kokoro-zh-gpu:latest
     volumes:
-      - ../../api:/app/api
+      - /workspace/models/Kokoro-82M-v1.1-zh:/app/api/src/models/v1_1-zh
+      - /workspace/models/Kokoro-82M-v1.1-zh/voices:/app/api/src/voices/v1_1-zh
     user: "1001:1001"  # Ensure container runs as UID 1001 (appuser)
     ports:
       - "8880:8880"
     environment:
       - PYTHONPATH=/app:/app/api
+      - $DOWNLOAD_MODEL=false
       - USE_GPU=true
       - PYTHONUNBUFFERED=1
     deploy:

@@ -1,6 +1,14 @@
 FROM python:3.10-slim 
 
 # Install dependencies and check espeak location
+RUN bash -c 'cat > /etc/apt/sources.list.d/ubuntu.sources << EOF
+Types: deb
+URIs: http://mirrors.aliyun.com/ubuntu
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+EOF'
+
 RUN apt-get update && apt-get install -y \
     espeak-ng \
     espeak-ng-data \

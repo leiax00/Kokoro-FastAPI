@@ -1,11 +1,17 @@
+# 需要手动下载 hexgrad/Kokoro-82M-v1.1-zh
+#  pip install huggingface-hub
+# huggingface-cli download hexgrad/Kokoro-82M-v1.1-zh --local-dir /workspace/models/Kokoro-82M-v1.1-zh
+
 name: kokoro-fastapi-cpu
 services:
   kokoro-tts:
     build:
       context: ../..
       dockerfile: docker/cpu/Dockerfile
+    image: leiax00/kokoro-zh-cpu:latest
     volumes:
-      - ../../api:/app/api
+      - /workspace/models/Kokoro-82M-v1.1-zh:/app/api/src/models/v1_1-zh
+      - /workspace/models/Kokoro-82M-v1.1-zh/voices:/app/api/src/voices/v1_1-zh
     ports:
       - "8880:8880"
     environment:
@@ -17,6 +23,7 @@ services:
       - ONNX_OPTIMIZATION_LEVEL=all
       - ONNX_MEMORY_PATTERN=true
       - ONNX_ARENA_EXTEND_STRATEGY=kNextPowerOfTwo
+      - $DOWNLOAD_MODEL=false
       
   # # Gradio UI service [Comment out everything below if you don't need it]
   # gradio-ui:

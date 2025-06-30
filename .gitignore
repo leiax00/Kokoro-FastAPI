@@ -73,3 +73,6 @@ uv.lock
 
 # Mac MPS virtualenv for dual testing
 .venv-mps
+
+api/src/voices/v1_1-zh/*.pt
+api/src/models/v1_1-zh/*.pth

@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     # Application Settings
     output_dir: str = "output"
     output_dir_size_limit_mb: float = 500.0  # Maximum size of output directory in MB
-    default_voice: str = "af_heart"
+    default_voice: str = "zf_094"
     default_voice_code: str | None = (
         None  # If set, overrides the first letter of voice name, though api call param still takes precedence
     )
@@ -24,6 +24,7 @@ class Settings(BaseSettings):
     allow_local_voice_saving: bool = (
         False  # Whether to allow saving combined voices locally
     )
+    repo_id: str = "hexgrad/Kokoro-82M"
 
     # Container absolute paths
     model_dir: str = "/app/api/src/models"  # Absolute path in container

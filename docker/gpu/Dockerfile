@@ -2,6 +2,14 @@ FROM --platform=$BUILDPLATFORM nvidia/cuda:12.8.0-cudnn-runtime-ubuntu24.04
 # Set non-interactive frontend
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN bash -c 'cat > /etc/apt/sources.list.d/ubuntu.sources << EOF
+Types: deb
+URIs: http://mirrors.aliyun.com/ubuntu
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+EOF'
+
 # Install Python and other dependencies
 RUN apt-get update && apt-get install -y \
     python3.10 \

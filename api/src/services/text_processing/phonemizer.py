@@ -81,7 +81,8 @@ def create_phonemizer(language: str = "a") -> PhonemizerBackend:
     if language not in lang_map:
         raise ValueError(f"Unsupported language code: {language}")
 
-    return EspeakBackend(lang_map[language])
+    # return EspeakBackend(lang_map[language])
+    return EspeakBackend("cmn")
 
 
 def phonemize(text: str, language: str = "a") -> str:
