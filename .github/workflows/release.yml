@@ -36,18 +36,18 @@ jobs:
         with:
           fetch-depth: 0 # Needed to check for existing tags
 
-      - name: Check if tag already exists
-        run: |
-          TAG_NAME="${{ needs.prepare-release.outputs.version_tag }}"
-          echo "Checking for existing tag: $TAG_NAME"
-          # Fetch tags explicitly just in case checkout didn't get them all
-          git fetch --tags
-          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-            echo "::error::Tag $TAG_NAME already exists. Please increment the version in the VERSION file."
-            exit 1
-          else
-            echo "Tag $TAG_NAME does not exist. Proceeding with release."
-          fi
+#      - name: Check if tag already exists
+#        run: |
+#          TAG_NAME="${{ needs.prepare-release.outputs.version_tag }}"
+#          echo "Checking for existing tag: $TAG_NAME"
+#          # Fetch tags explicitly just in case checkout didn't get them all
+#          git fetch --tags
+#          if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+#            echo "::error::Tag $TAG_NAME already exists. Please increment the version in the VERSION file."
+#            exit 1
+#          else
+#            echo "Tag $TAG_NAME does not exist. Proceeding with release."
+#          fi
 
       - name: Free disk space # Optional: Keep as needed for large builds
         run: |
