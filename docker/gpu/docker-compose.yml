@@ -21,6 +21,10 @@ services:
       - DOWNLOAD_MODEL=false
       - USE_GPU=true
       - PYTHONUNBUFFERED=1
+      - MODEL_DIR=src/models
+      - VOICES_DIR=src/voices/v1_1-zh
+      - DEFAULT_VOICE=zf_094
+      - REPO_ID=hexgrad/Kokoro-82M-v1.1-zh
     deploy:
       resources:
         reservations:

@@ -24,6 +24,10 @@ services:
       - ONNX_MEMORY_PATTERN=true
       - ONNX_ARENA_EXTEND_STRATEGY=kNextPowerOfTwo
       - DOWNLOAD_MODEL=false
+      - MODEL_DIR=src/models
+      - VOICES_DIR=src/voices/v1_1-zh
+      - DEFAULT_VOICE=zf_094
+      - REPO_ID=hexgrad/Kokoro-82M-v1.1-zh
       
   # # Gradio UI service [Comment out everything below if you don't need it]
   # gradio-ui:
